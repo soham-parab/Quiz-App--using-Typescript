@@ -2,7 +2,7 @@ import React from "react";
 
 import { Quiz } from "../../types/types";
 
-const quiz: Quiz = {
+export const quiz: Quiz = {
    quizName: "Do you suck at Finance?",
    questions: [
       {
