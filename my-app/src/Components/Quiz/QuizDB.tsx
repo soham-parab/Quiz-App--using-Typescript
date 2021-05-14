@@ -6,8 +6,7 @@ export const quizDB: Quiz = {
    quizName: "Do you suck at Finance?",
    questions: [
       {
-         question:
-            "How much of the population of our country is financially literate?",
+         question: "What % population of our country is financially literate?",
          points: 2,
          answer: [
             {

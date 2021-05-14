@@ -95,7 +95,7 @@ export const quizReducer = (state: QuizData, action: ACTIONTYPE): QuizData => {
       default:
          break;
    }
-   return acc;
+   return state;
 };
 
 export const useQuiz = () => {
