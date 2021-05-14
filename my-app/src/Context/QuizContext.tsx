@@ -4,26 +4,97 @@ import { Quiz } from "../types/types";
 
 const QuizContext = createContext({} as ContextValue);
 
+type currentStatus = "starting" | "ongoing" | "finished";
+
+type QuizData = {
+   score: number;
+   username: string;
+   currentQuesNumber: number;
+   status: currentStatus;
+   quizNumber: number;
+   correctAnswers: number;
+   wrongAnswers: number;
+   data: Quiz;
+};
+
 type ContextValue = {
-   state: Quiz;
-   dispatch: React.Dispatch<any>;
+   score: number;
+   username: string;
+   currentQuesNumber: number;
+   status: string;
+   quizNumber: number;
+   correctAnswers: number;
+   wrongAnswers: number;
+   data: Quiz;
+   dispatch: React.Dispatch<ACTIONTYPE>;
+};
+
+const initialState: QuizData = {
+   score: 0,
+   username: "",
+   currentQuesNumber: 1,
+   status: "starting",
+   quizNumber: 1,
+   correctAnswers: 0,
+   wrongAnswers: 0,
+   data: quizDB,
 };
 
 export const QuizProvider: React.FC = ({ children }) => {
-   const [state, dispatch] = useReducer(quizReducer, quizDB);
+   const [
+      {
+         score,
+         username,
+         currentQuesNumber,
+         status,
+         quizNumber,
+         correctAnswers,
+         wrongAnswers,
+         data,
+      },
+      dispatch,
+   ] = useReducer(quizReducer, initialState);
    return (
-      <QuizContext.Provider value={{ state, dispatch }}>
+      <QuizContext.Provider
+         value={{
+            score,
+            username,
+            currentQuesNumber,
+            status,
+            quizNumber,
+            correctAnswers,
+            wrongAnswers,
+            data,
+            dispatch,
+         }}
+      >
          {children}
       </QuizContext.Provider>
    );
 };
 
-// type ACTIONTYPE =
-// | {type:"RESET"}
-// | {type:"INCREMENT SCORE" ; payload:{score:number}}
-// | {type:"DECREMENT SCORE" ; payload:{score:number}}
+type ACTIONTYPE =
+   | { type: "RESET" }
+   | { type: "INCREMENT SCORE"; payload: { score: number } }
+   | { type: "DECREMENT SCORE"; payload: { score: number } };
 
-export const quizReducer = (acc: Quiz, action: any): Quiz => {
+export const quizReducer = (state: QuizData, action: ACTIONTYPE): QuizData => {
+   switch (action.type) {
+      case "RESET":
+         return {
+            ...state,
+            score: 0,
+            status: "starting",
+            quizNumber: 1,
+            correctAnswers: 0,
+            wrongAnswers: 0,
+            currentQuesNumber: 1,
+            data: quizDB,
+         };
+
+      default:
+         break;
+   }
    return acc;
 };
 
