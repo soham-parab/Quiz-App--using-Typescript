@@ -35,20 +35,20 @@ export const quizDB: Quiz = {
          points: 2,
          answer: [
             {
-               option: "10%",
-               isRight: false,
-            },
-            {
                option: "5%",
                isRight: true,
             },
+            {
+               option: "10%",
+               isRight: false,
+            },
 
             {
-               option: "7%",
+               option: "3%",
                isRight: false,
             },
             {
-               option: "3%",
+               option: "7%",
                isRight: false,
             },
          ],
