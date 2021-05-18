@@ -20,14 +20,6 @@ type QuizData = {
 
 type ContextValue = {
    state: QuizData;
-   // score: number;
-   // username: string;
-   // currentQuesNumber: number;
-   // status: string;
-   // quizNumber: number;
-   // correctAnswers: number;
-   // wrongAnswers: number;
-   // data: Quiz;
    dispatch: React.Dispatch<ACTIONTYPE>;
 };
 
@@ -98,7 +90,6 @@ export const quizReducer = (
          };
 
       case "NEXT_QUES":
-         console.log(quizState.currentQuesNumber);
          if (
             quizState.currentQuesNumber + 1 <
             quizState.data.questions.length

@@ -1,0 +1,12 @@
+.labels {
+   color: teal !important;
+}
+
+.background {
+   background-image: url(../../assets/undraw_quiz_nlyh.svg);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
