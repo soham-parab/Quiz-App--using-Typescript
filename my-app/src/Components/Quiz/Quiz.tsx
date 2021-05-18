@@ -33,18 +33,18 @@ export const QuizComponent = () => {
    const { state, dispatch } = useQuiz();
    const classes = useStyles();
 
-   const timerOne = useTimer();
+   // const timerOne = useTimer();
 
-   const [time, setTime] = React.useState(30);
-   // if (time === 0) {
-   //    (function () {
-   //       dispatch({ type: "NEXT_QUES" });
-   //    })();
-   // }
-   if (time <= 0) {
-      console.log("2 baar");
-      dispatch({ type: "NEXT_QUES" });
-   }
+   const [time, setTime] = React.useState(10);
+
+   React.useEffect(() => {
+      if (time === 0) {
+         console.log("2 baar");
+         setTime(10);
+         dispatch({ type: "NEXT_QUES" });
+      }
+   }, [time]);
+
    React.useEffect(() => {
       const timer = setInterval(() => {
          setTime((prevTime) => {
@@ -54,7 +54,7 @@ export const QuizComponent = () => {
 
       return () => {
          clearInterval(timer);
-         setTime(30);
+         setTime(10);
          console.log("asdsad");
       };
    }, [state.currentQuesNumber]);
@@ -64,7 +64,7 @@ export const QuizComponent = () => {
          <div className="quiz-parent">
             <CircularProgress
                variant="determinate"
-               value={100 - (time * 10) / 3}
+               value={(1 - time / 10) * 100}
             />
             <h1>Fundamentals of Finance.</h1>
             <br />
