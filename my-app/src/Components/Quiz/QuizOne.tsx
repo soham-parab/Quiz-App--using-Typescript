@@ -4,7 +4,7 @@ import { useQuiz } from "../../Context/QuizContext";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import "./Quiz.css";
+import "./QuizOne.css";
 import axios from "axios";
 
 const useTimer = makeStyles((theme: Theme) =>
@@ -28,8 +28,30 @@ const useStyles = makeStyles((theme: Theme) =>
    })
 );
 
-export const QuizComponent = () => {
+export const QuizComponentOne = () => {
    const { state, dispatch } = useQuiz();
+
+   React.useEffect(() => {
+      (async function () {
+         try {
+            const response = await axios.get("http://localhost:3500/quizone");
+            console.log(response.data);
+
+            dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
+         } catch (err) {
+            console.log(err);
+         }
+      })();
+   }, []);
+
+   const [styler, setStyler] = useState({});
+   const rightOptionStyle = {
+      border: "1px solid green",
+   };
+
+   const wrongOptionStyle = {
+      border: "1px solid red",
+   };
 
    const [disabled, setDisabled] = useState(false);
    console.log(state.data);
@@ -60,6 +82,29 @@ export const QuizComponent = () => {
    //    };
    // }, [state.currentQuesNumber]);
 
+   // const Option: any = ({ item }: any): any => {
+   //    return (
+   //       <Button
+   //          style={styler}
+   //          disabled={state.disabled}
+   //          onClick={(event) => {
+   //             event.persist();
+   //             if (item.isRight) {
+   //                console.log(event.target);
+
+   //                dispatch({ type: "RIGHT_ANS" });
+   //             } else {
+   //                dispatch({ type: "WRONG_ANS" });
+   //             }
+   //          }}
+   //          variant="contained"
+   //          color="primary"
+   //       >
+   //          {item.option}
+   //       </Button>
+   //    );
+   // };
+
    return (
       // <div>
       //    <h1>wahuida</h1>
@@ -83,9 +128,13 @@ export const QuizComponent = () => {
                   return (
                      <div>
                         <Button
+                           style={styler}
                            disabled={state.disabled}
-                           onClick={() => {
+                           onClick={(event) => {
+                              event.persist();
                               if (item.isRight) {
+                                 console.log(event.target);
+
                                  dispatch({ type: "RIGHT_ANS" });
                               } else {
                                  dispatch({ type: "WRONG_ANS" });

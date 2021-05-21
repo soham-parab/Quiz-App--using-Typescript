@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const images = [
    {
       url: "https://ml8ygptwlcsq.i.optimole.com/KqGSM2A.LwXc~1d1f4/w:1237/h:692/q:auto/https://www.securities.io/wp-content/uploads/2020/09/wealth-management.jpg",
-      title: "Play!",
+      title: "Quiz two!",
       width: "50vw",
       height: "50vh",
    },
@@ -99,9 +99,16 @@ export const Home = () => {
             again.
          </h1>
 
+         <Link to="/quizOne">
+            <button>Quiz One</button>
+         </Link>
+
          <div className={classes.root}>
             {images.map((image) => (
-               <Link to="/quiz">
+               <Link
+                  to="/quiztwo
+               "
+               >
                   <ButtonBase
                      focusRipple
                      key={image.title}

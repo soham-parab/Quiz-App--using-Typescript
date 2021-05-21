@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { QuizComponent } from "./Components/Quiz/Quiz";
+import { QuizComponentOne } from "./Components/Quiz/QuizOne";
+import { QuizComponentTwo } from "./Components/Quiz/QuizTwo";
 import { Nav } from "./Components/Nav/nav";
 import "./App.css";
 import { Home } from "./Components/Home/Home";
@@ -30,7 +31,8 @@ function App() {
          <Nav />
          <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/quiz" element={<QuizComponent />} />
+            <Route path="/quizOne" element={<QuizComponentOne />} />
+            <Route path="/quizTwo" element={<QuizComponentTwo />} />
             <Route path="/quizzes" element={<Quizzes />} />
          </Routes>
       </div>
