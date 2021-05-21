@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useContext, createContext } from "react";
-import { quizDB } from "../Components/Quiz/QuizDB";
+
 import { Quiz } from "../types/types";
 
 const QuizContext = createContext({} as ContextValue);
@@ -31,7 +31,10 @@ const initialState: QuizData = {
    quizNumber: 1,
    correctAnswers: 0,
    wrongAnswers: 0,
-   data: quizDB,
+   data: {
+      quizName: "",
+      questions: [],
+   },
    disabled: false,
 };
 
@@ -53,7 +56,8 @@ type ACTIONTYPE =
    | { type: "RESET" }
    | { type: "RIGHT_ANS" }
    | { type: "WRONG_ANS" }
-   | { type: "NEXT_QUES" };
+   | { type: "NEXT_QUES" }
+   | { type: "LOAD_DATA"; payload: { data: any } };
 
 export const quizReducer = (
    quizState: QuizData,
@@ -69,7 +73,6 @@ export const quizReducer = (
             correctAnswers: 0,
             wrongAnswers: 0,
             currentQuesNumber: 0,
-            data: quizDB,
             disabled: false,
          };
 
@@ -88,6 +91,9 @@ export const quizReducer = (
             wrongAnswers: quizState.wrongAnswers + 1,
             disabled: true,
          };
+
+      case "LOAD_DATA":
+         return { ...quizState, data: action.payload.data };
 
       case "NEXT_QUES":
          if (
