@@ -1,6 +1,7 @@
 import React from "react";
 
 export type Questions = {
+   id: string;
    question: string;
    points: number;
    answer: Answer[];
