@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const QuizComponentOne = () => {
-   const { state, dispatch } = useQuiz();
-
    React.useEffect(() => {
       (async function () {
          try {
-            const response = await axios.get("http://localhost:3500/quizone");
+            const response = await axios.get(
+               "https://quiz-app-api.sohamparab13.repl.co/quizone"
+            );
             console.log(response.data);
 
             dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
@@ -43,6 +43,8 @@ export const QuizComponentOne = () => {
          }
       })();
    }, []);
+
+   const { state, dispatch } = useQuiz();
 
    const [styler, setStyler] = useState({});
    const rightOptionStyle = {
@@ -57,6 +59,12 @@ export const QuizComponentOne = () => {
    console.log(state.data);
    const classes = useStyles();
    const [time, setTime] = React.useState(10);
+   const [selected, setSelected] = useState("");
+
+   const checkHandler = (item: any) => {
+      if (selected === item && item.isRight === false) return "wrong";
+      else if (item.isRight === true) return "select";
+   };
 
    // const timerOne = useTimer();
 
@@ -82,37 +90,7 @@ export const QuizComponentOne = () => {
    //    };
    // }, [state.currentQuesNumber]);
 
-   // const Option: any = ({ item }: any): any => {
-   //    return (
-   //       <Button
-   //          style={styler}
-   //          disabled={state.disabled}
-   //          onClick={(event) => {
-   //             event.persist();
-   //             if (item.isRight) {
-   //                console.log(event.target);
-
-   //                dispatch({ type: "RIGHT_ANS" });
-   //             } else {
-   //                dispatch({ type: "WRONG_ANS" });
-   //             }
-   //          }}
-   //          variant="contained"
-   //          color="primary"
-   //       >
-   //          {item.option}
-   //       </Button>
-   //    );
-   // };
-
    return (
-      // <div>
-      //    <h1>wahuida</h1>
-
-      //    <h2>{state.score} </h2>
-      //    <h2>{state.data.quizName}</h2>
-      // </div>
-
       <div className="quiz-body">
          <div className="quiz-parent">
             <CircularProgress
@@ -123,34 +101,36 @@ export const QuizComponentOne = () => {
             <br />
             <h3> {state.data.questions[state.currentQuesNumber].question} </h3>
             <h2>{state.score} </h2>
-            {state.data.questions[state.currentQuesNumber].answer.map(
-               (item: any) => {
-                  return (
-                     <div>
-                        <Button
-                           style={styler}
-                           disabled={state.disabled}
-                           onClick={(event) => {
-                              event.persist();
-                              if (item.isRight) {
-                                 console.log(event.target);
-
-                                 dispatch({ type: "RIGHT_ANS" });
-                              } else {
-                                 dispatch({ type: "WRONG_ANS" });
-                              }
-                           }}
-                           variant="contained"
-                           color="primary"
-                        >
-                           {item.option}
-                        </Button>
-                     </div>
-                  );
-               }
-            )}
+            {state.data.questions &&
+               state.data.questions[state.currentQuesNumber].answer.map(
+                  (item: any) => {
+                     return (
+                        <div>
+                           <button
+                              className={`singleOption ${
+                                 selected && checkHandler(item)
+                              }`}
+                              disabled={state.disabled}
+                              onClick={() => {
+                                 setSelected(item);
+                                 if (item.isRight) {
+                                    dispatch({ type: "RIGHT_ANS" });
+                                 } else {
+                                    dispatch({ type: "WRONG_ANS" });
+                                 }
+                              }}
+                              // variant="contained"
+                              // color="primary"
+                           >
+                              {item.option}
+                           </button>
+                        </div>
+                     );
+                  }
+               )}
             <Button
                onClick={() => {
+                  setSelected("");
                   dispatch({ type: "NEXT_QUES" });
                   setDisabled(false);
                }}
@@ -162,6 +142,7 @@ export const QuizComponentOne = () => {
 
             <Button
                onClick={() => {
+                  setSelected("");
                   dispatch({ type: "RESET" });
                   setDisabled(false);
                }}

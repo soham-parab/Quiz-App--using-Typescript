@@ -34,9 +34,9 @@ export const QuizComponentTwo = () => {
    React.useEffect(() => {
       (async function () {
          try {
-            const response = await axios.get("http://localhost:3500/quiztwo");
+            const response = await axios.get("https://quiz-app-api.sohamparab13.repl.co/quiztwo");
             console.log(response.data);
-
+            
             dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
          } catch (err) {
             console.log(err);

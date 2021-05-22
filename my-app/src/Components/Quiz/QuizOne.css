@@ -13,3 +13,23 @@
    align-items: center;
    justify-content: center;
 }
+
+.singleOption {
+   width: 46%;
+   height: 50px;
+   padding: 15px 20px;
+   margin: 10px;
+   box-shadow: 0 0 2px black;
+}
+
+.select {
+   background-color: rgb(7, 207, 0);
+   color: white;
+   box-shadow: 0 0 1px black;
+}
+
+.wrong {
+   background-color: rgb(233, 0, 0);
+   color: white;
+   box-shadow: 0 0 1px black;
+}
