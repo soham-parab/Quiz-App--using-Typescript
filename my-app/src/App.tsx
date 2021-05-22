@@ -30,10 +30,10 @@ function App() {
       <div className="App">
          <Nav />
          <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Quizzes />} />
             <Route path="/quizOne" element={<QuizComponentOne />} />
             <Route path="/quizTwo" element={<QuizComponentTwo />} />
-            <Route path="/quizzes" element={<Quizzes />} />
+            {/* <Route path="/quizzes" element={<Quizzes />} /> */}
          </Routes>
       </div>
    );

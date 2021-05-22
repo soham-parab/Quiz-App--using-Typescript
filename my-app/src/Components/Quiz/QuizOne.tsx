@@ -32,9 +32,7 @@ export const QuizComponentOne = () => {
    React.useEffect(() => {
       (async function () {
          try {
-            const response = await axios.get(
-               "https://quiz-app-api.sohamparab13.repl.co/quizone"
-            );
+            const response = await axios.get("http://localhost:3500/quizone");
             console.log(response.data);
 
             dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
@@ -92,65 +90,74 @@ export const QuizComponentOne = () => {
 
    return (
       <div className="quiz-body">
+         <h1 className="quiz-name">Fundamentals of Finance.</h1>
          <div className="quiz-parent">
             <CircularProgress
                variant="determinate"
                value={(1 - time / 10) * 100}
             />
-            <h1>Fundamentals of Finance.</h1>
-            <br />
-            <h3> {state.data.questions[state.currentQuesNumber].question} </h3>
-            <h2>{state.score} </h2>
-            {state.data.questions &&
-               state.data.questions[state.currentQuesNumber].answer.map(
-                  (item: any) => {
-                     return (
-                        <div>
-                           <button
-                              className={`singleOption ${
-                                 selected && checkHandler(item)
-                              }`}
-                              disabled={state.disabled}
-                              onClick={() => {
-                                 setSelected(item);
-                                 if (item.isRight) {
-                                    dispatch({ type: "RIGHT_ANS" });
-                                 } else {
-                                    dispatch({ type: "WRONG_ANS" });
-                                 }
-                              }}
-                              // variant="contained"
-                              // color="primary"
-                           >
-                              {item.option}
-                           </button>
-                        </div>
-                     );
-                  }
-               )}
-            <Button
-               onClick={() => {
-                  setSelected("");
-                  dispatch({ type: "NEXT_QUES" });
-                  setDisabled(false);
-               }}
-               variant="contained"
-            >
-               {" "}
-               NEXT QUESTION
-            </Button>
 
-            <Button
-               onClick={() => {
-                  setSelected("");
-                  dispatch({ type: "RESET" });
-                  setDisabled(false);
-               }}
-               variant="contained"
-            >
+            <br />
+            <h1 className="question">
                {" "}
-               RESET QUIZ
-            </Button>
+               {state.data.questions[state.currentQuesNumber].question}{" "}
+            </h1>
+
+            <h2 className="score">Score: {state.score} </h2>
+            <div className="options-div">
+               {state.data.questions &&
+                  state.data.questions[state.currentQuesNumber].answer.map(
+                     (item: any) => {
+                        return (
+                           <div>
+                              <button
+                                 className={`singleOption ${
+                                    selected && checkHandler(item)
+                                 }`}
+                                 disabled={state.disabled}
+                                 onClick={() => {
+                                    setSelected(item);
+                                    if (item.isRight) {
+                                       dispatch({ type: "RIGHT_ANS" });
+                                    } else {
+                                       dispatch({ type: "WRONG_ANS" });
+                                    }
+                                 }}
+                                 // variant="contained"
+                                 // color="primary"
+                              >
+                                 {item.option}
+                              </button>
+                           </div>
+                        );
+                     }
+                  )}
+            </div>
+            <div className="material-buttons">
+               <Button
+                  onClick={() => {
+                     setSelected("");
+                     dispatch({ type: "NEXT_QUES" });
+                     setDisabled(false);
+                  }}
+                  variant="contained"
+               >
+                  {" "}
+                  NEXT QUESTION
+               </Button>
+
+               <Button
+                  onClick={() => {
+                     setSelected("");
+                     dispatch({ type: "RESET" });
+                     setDisabled(false);
+                  }}
+                  variant="contained"
+               >
+                  {" "}
+                  RESET QUIZ
+               </Button>
+            </div>
          </div>
       </div>
    );

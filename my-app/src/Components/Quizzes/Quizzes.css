@@ -1,6 +1,7 @@
 .card-parent {
+   width: 100vw;
    display: flex;
-   justify-content: center;
+   justify-content: space-around;
    align-items: center;
-   margin-top: 20vh;
+   /* margin-top: 20vh; */
 }
