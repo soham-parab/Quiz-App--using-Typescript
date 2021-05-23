@@ -1,25 +1,9 @@
-/* .quiz-parent {
-   width: 50vw;
-   background-color: rgba(0, 128, 128, 0.479);
-   height: 50vh;
-   color: black;
-   opacity: 99%;
-   border-radius: 30px;
-} */
-
-/* .quiz-body {
-   min-height: 90vh;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-} */
-
 .quiz-parent {
    width: 50vw;
    background-color: #66cccc;
    height: 50vh;
    color: black;
-   opacity: 99%;
+
    border-radius: 30px;
    display: flex;
    justify-content: center;

@@ -3,7 +3,6 @@
    background-color: #66cccc !important;
    height: 70vh !important;
    color: black !important;
-   opacity: 99% !important;
    border-radius: 30px !important;
    display: flex !important;
    justify-content: center !important;
@@ -25,8 +24,6 @@
 }
 
 .singleOption {
-   /* width: 60%; */
-
    padding: 15px 20px;
    margin: 10px;
    box-shadow: 0 0 2px black;
