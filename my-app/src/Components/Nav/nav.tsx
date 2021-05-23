@@ -47,14 +47,6 @@ export const Nav = () => {
                   icon={<HomeRoundedIcon />}
                />
             </Link>
-
-            <Link to="/quiz" className="Quiz-Link">
-               <BottomNavigationAction
-                  className={label.label}
-                  label="All Quizzes"
-                  icon={<PlayArrowIcon />}
-               />
-            </Link>
          </BottomNavigation>
       </>
    );

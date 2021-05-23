@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuiz } from "../../Context/QuizContext";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -30,21 +30,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const QuizComponentTwo = () => {
    const { state, dispatch } = useQuiz();
-
-   React.useEffect(() => {
-      (async function () {
-         try {
-            const response = await axios.get(
-               "https://quiz-app-api.sohamparab13.repl.co/quiztwo"
-            );
-            console.log(response.data);
-
-            dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
-         } catch (err) {
-            console.log(err);
-         }
-      })();
-   }, []);
 
    const [styler, setStyler] = useState({});
    const rightOptionStyle = {
@@ -112,6 +97,21 @@ export const QuizComponentTwo = () => {
    //       );
    //    };
 
+   useEffect(() => {
+      (async function () {
+         try {
+            const response = await axios.get(
+               "https://quiz-app-api.sohamparab13.repl.co/quiztwo"
+            );
+            console.log(response.data);
+
+            dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
+         } catch (err) {
+            console.log(err);
+         }
+      })();
+   }, []);
+
    return (
       <div className="quiz-body">
          <h1 className="quiz-name">Fundamentals of Crypto.</h1>
@@ -124,37 +124,39 @@ export const QuizComponentTwo = () => {
 
             <br />
             <h1 className="question">
-               {state.data.questions[state.currentQuesNumber].question}{" "}
+               {state.data.questions.length &&
+                  state.data.questions[state.currentQuesNumber].question}{" "}
             </h1>
             <h2 className="score">{state.score} </h2>
 
             <div className="options-div">
-               {state.data.questions[state.currentQuesNumber].answer.map(
-                  (item: any) => {
-                     return (
-                        <div>
-                           <button
-                              className={`singleOption ${
-                                 selected && checkHandler(item)
-                              }`}
-                              disabled={state.disabled}
-                              onClick={() => {
-                                 setSelected(item);
-                                 if (item.isRight) {
-                                    dispatch({ type: "RIGHT_ANS" });
-                                 } else {
-                                    dispatch({ type: "WRONG_ANS" });
-                                 }
-                              }}
-                              // variant="contained"
-                              // color="primary"
-                           >
-                              {item.option}
-                           </button>
-                        </div>
-                     );
-                  }
-               )}
+               {state.data.questions.length &&
+                  state.data.questions[state.currentQuesNumber].answer.map(
+                     (item: any) => {
+                        return (
+                           <div>
+                              <button
+                                 className={`singleOption ${
+                                    selected && checkHandler(item)
+                                 }`}
+                                 disabled={state.disabled}
+                                 onClick={() => {
+                                    setSelected(item);
+                                    if (item.isRight) {
+                                       dispatch({ type: "RIGHT_ANS" });
+                                    } else {
+                                       dispatch({ type: "WRONG_ANS" });
+                                    }
+                                 }}
+                                 // variant="contained"
+                                 // color="primary"
+                              >
+                                 {item.option}
+                              </button>
+                           </div>
+                        );
+                     }
+                  )}
             </div>
             <div className="material-buttons">
                <Button

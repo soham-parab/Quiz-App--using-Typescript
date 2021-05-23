@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuiz } from "../../Context/QuizContext";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -29,21 +29,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const QuizComponentOne = () => {
+   console.log("lien 47");
    const { state, dispatch } = useQuiz();
-   React.useEffect(() => {
-      (async function () {
-         try {
-            const response = await axios.get(
-               "https://quiz-app-api.sohamparab13.repl.co/quizone"
-            );
-            console.log(response.data);
-
-            dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
-         } catch (err) {
-            console.log(err);
-         }
-      })();
-   }, [dispatch]);
 
    const [styler, setStyler] = useState({});
    const rightOptionStyle = {
@@ -65,30 +52,25 @@ export const QuizComponentOne = () => {
       else if (item.isRight === true) return "select";
    };
 
-   // const timerOne = useTimer();
-
-   // React.useEffect(() => {
-   //    if (time === 0) {
-   //       console.log("2 baar");
-   //       setTime(10);
-   //       dispatch({ type: "NEXT_QUES" });
-   //    }
-   // }, [time]);
-
-   // React.useEffect(() => {
-   //    const timer = setInterval(() => {
-   //       setTime((prevTime) => {
-   //          return prevTime - 1;
-   //       });
-   //    }, 1000);
-
-   //    return () => {
-   //       clearInterval(timer);
-   //       setTime(10);
-   //       console.log("asdsad");
-   //    };
-   // }, [state.currentQuesNumber]);
    console.log(state.data.questions);
+
+   useEffect(() => {
+      console.log("effect");
+
+      (async function () {
+         try {
+            const response = await axios.get(
+               "https://quiz-app-api.sohamparab13.repl.co/quizone"
+            );
+            console.log(response.data, "uihashd");
+
+            dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
+         } catch (err) {
+            console.log(err, "error");
+         }
+      })();
+   }, []);
+
    return (
       <div className="quiz-body">
          <h1 className="quiz-name">Fundamentals of Personal Finance.</h1>
@@ -99,13 +81,20 @@ export const QuizComponentOne = () => {
             />
 
             <br />
-            <h1 className="question">
-               {state.data.questions[state.currentQuesNumber].question}{" "}
+            <h1
+               className="question"
+               style={{ display: state.data.questions ? "" : "none" }}
+            >
+               {state.data.questions.length &&
+                  state.data.questions[state.currentQuesNumber].question}{" "}
             </h1>
 
             <h2 className="score">Score: {state.score} </h2>
-            <div className="options-div">
-               {state.data.questions &&
+            <div
+               className="options-div"
+               style={{ display: state.data.questions ? "" : "none" }}
+            >
+               {state.data.questions.length &&
                   state.data.questions[state.currentQuesNumber].answer.map(
                      (item: any) => {
                         return (
