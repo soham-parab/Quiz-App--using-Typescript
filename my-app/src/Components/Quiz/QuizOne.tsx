@@ -29,10 +29,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const QuizComponentOne = () => {
+   const { state, dispatch } = useQuiz();
    React.useEffect(() => {
       (async function () {
          try {
-            const response = await axios.get("http://localhost:3500/quizone");
+            const response = await axios.get(
+               "https://quiz-app-api.sohamparab13.repl.co/quizone"
+            );
             console.log(response.data);
 
             dispatch({ type: "LOAD_DATA", payload: { data: response.data } });
@@ -40,9 +43,7 @@ export const QuizComponentOne = () => {
             console.log(err);
          }
       })();
-   }, []);
-
-   const { state, dispatch } = useQuiz();
+   }, [dispatch]);
 
    const [styler, setStyler] = useState({});
    const rightOptionStyle = {
@@ -87,10 +88,10 @@ export const QuizComponentOne = () => {
    //       console.log("asdsad");
    //    };
    // }, [state.currentQuesNumber]);
-
+   console.log(state.data.questions);
    return (
       <div className="quiz-body">
-         <h1 className="quiz-name">Fundamentals of Finance.</h1>
+         <h1 className="quiz-name">Fundamentals of Personal Finance.</h1>
          <div className="quiz-parent">
             <CircularProgress
                variant="determinate"
@@ -99,7 +100,6 @@ export const QuizComponentOne = () => {
 
             <br />
             <h1 className="question">
-               {" "}
                {state.data.questions[state.currentQuesNumber].question}{" "}
             </h1>
 
@@ -123,8 +123,6 @@ export const QuizComponentOne = () => {
                                        dispatch({ type: "WRONG_ANS" });
                                     }
                                  }}
-                                 // variant="contained"
-                                 // color="primary"
                               >
                                  {item.option}
                               </button>

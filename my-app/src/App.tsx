@@ -30,7 +30,7 @@ function App() {
       <div className="App">
          <Nav />
          <Routes>
-            <Route path="/" element={<Quizzes />} />
+            <Route path="/" element={<Home />} />
             <Route path="/quizOne" element={<QuizComponentOne />} />
             <Route path="/quizTwo" element={<QuizComponentTwo />} />
             {/* <Route path="/quizzes" element={<Quizzes />} /> */}

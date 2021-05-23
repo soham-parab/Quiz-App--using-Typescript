@@ -8,11 +8,6 @@ import { Theme, makeStyles, createStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 
 const images = [
-   // {
-   //    url: "/static/images/grid-list/breakfast.jpg",
-   //    title: "Breakfast",
-   //    width: "40%",
-   // },
    {
       url: "https://www.silversurfers.com/wp-content/uploads/2020/05/bigstock-Quiz-Text-On-Wooden-Cubes-On-A-359172064.jpg",
       title: "Test yourself on Finance!",
@@ -37,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
          position: "relative",
          height: 200,
          [theme.breakpoints.down("xs")]: {
-            width: "100% !important", // Overrides inline-style
+            width: "100% !important",
             height: 100,
          },
          "&:hover, &$focusVisible": {
@@ -137,7 +132,7 @@ export function Quizzes() {
                   </span>
                </ButtonBase>
             ))}
-            <React.Fragment>
+            {/* <React.Fragment>
                <div>
                   <CssBaseline />
                   <Container maxWidth="sm">
@@ -154,7 +149,7 @@ export function Quizzes() {
                      />
                   </Container>
                </div>
-            </React.Fragment>
+            </React.Fragment> */}
          </div>
       </div>
    );
