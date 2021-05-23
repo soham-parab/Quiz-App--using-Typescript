@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { QuizComponentOne } from "./Components/Quiz/QuizOne";
 import { QuizComponentTwo } from "./Components/Quiz/QuizTwo";
 import { Nav } from "./Components/Nav/nav";
-import "./App.css";
 
 import { Quizzes } from "../src/Components/Quizzes/Quizzes";
 import axios from "axios";
