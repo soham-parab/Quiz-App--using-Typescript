@@ -1,14 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { QuizComponentOne } from "./Components/Quiz/QuizOne";
+import { Quiz } from "./Components/Quiz/QuizOne";
 import { QuizComponentTwo } from "./Components/Quiz/QuizTwo";
 import { Nav } from "./Components/Nav/nav";
-import { Login } from "./Components/Login/Login";
-import { Logout } from "./Components/Logout/Logout";
-
-import { Quizzes } from "../src/Components/Quizzes/Quizzes";
+import { Login } from "./Pages/Login/Login";
+import { Logout } from "./Pages/Logout/Logout";
+import { utilities } from "./utilities/utilities";
+import { Quizzes } from "./Pages/Quizzes/Quizzes";
 import axios from "axios";
 import { useQuiz } from "./Context/QuizContext";
+import { Homepage } from "./Pages/Homepage/Homepage";
 
 function App() {
   return (
@@ -17,9 +18,9 @@ function App() {
       <Login />
       <Logout />
       <Routes>
-        <Route path="/" element={<Quizzes />} />
-        {/* <Route path="/quizOne" element={<QuizComponentOne />} />
-            <Route path="/quizTwo" element={<QuizComponentTwo />} /> */}
+        <Route path="/quizzes" element={<Quizzes />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/quiz/:id" element={<Quiz />} />
       </Routes>
     </div>
   );
