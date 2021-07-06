@@ -11,43 +11,45 @@ import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import "./nav.css";
 const useStyles = makeStyles({
-   root: {
-      backgroundColor: "#002852",
-   },
+  root: {
+    backgroundColor: "#F45D01",
+  },
 });
 const labelClass = makeStyles({
-   label: {
-      color: "white",
-   },
-   "&:hover": {
-      backgroundColor: "333",
-   },
+  label: {
+    color: "white",
+  },
+  "&:hover": {
+    backgroundColor: "333",
+  },
 });
 
 export const Nav = () => {
-   const classes = useStyles();
+  const classes = useStyles();
 
-   const label = labelClass();
-   const [value, setValue] = React.useState(0);
+  const label = labelClass();
+  const [value, setValue] = React.useState(0);
 
-   return (
-      <>
-         <BottomNavigation
-            value={value}
-            onChange={(event, newValue) => {
-               setValue(newValue);
-            }}
-            showLabels
-            className={classes.root}
-         >
-            <Link className="Home-Link" to="/">
-               <BottomNavigationAction
-                  className={label.label}
-                  label="Home"
-                  icon={<HomeRoundedIcon />}
-               />
-            </Link>
-         </BottomNavigation>
-      </>
-   );
+  return (
+    <>
+      <div>
+        <BottomNavigation
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          showLabels
+          className={classes.root}
+        >
+          <Link className="Home-Link" to="/">
+            <BottomNavigationAction
+              className={label.label}
+              label="Home"
+              icon={<HomeRoundedIcon />}
+            />
+          </Link>
+        </BottomNavigation>
+      </div>
+    </>
+  );
 };

@@ -4,9 +4,10 @@ import { useQuiz } from "../../Context/QuizContext";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import "./QuizOne.css";
+import "./Quiz.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Nav } from "../Nav/nav";
 
 const useTimer = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Quiz = () => {
+  <Nav />;
   const { id } = useParams();
   console.log(id);
   console.log("lien 47");

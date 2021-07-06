@@ -21,6 +21,11 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { useParams } from "react-router-dom";
+import { Logout } from "../Logout/Logout";
+import { Nav } from "../../Components/Nav/nav";
+
+import Button from "@material-ui/core/Button";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,18 +53,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export function Quizzes() {
+  <Nav />;
+  // const { user: any } = useAuth0;
   const classes = useStyles();
   const { id } = useParams();
   console.log(id);
+  const { logout, isAuthenticated } = useAuth0();
 
   return (
     <>
+      <div className={classes.root}>
+        <Button onClick={() => logout()} variant="contained" color="primary">
+          Logout
+        </Button>
+      </div>
       <div className="main-div">
-        <h1 className="quizzes-title">
-          {" "}
-          Think you've got some of the Finance basics right? Find out in this
-          quiz!
-        </h1>
+        {/* <h1>Hello {user?.name}</h1> */}
+
+        <h1 className="quizzes-title"> Pick any quiz!</h1>
+
         <div className="card-div">
           <Link className="main-link" to="/quiz/60daffed69aa9632d40371af">
             <Card className={classes.root}>

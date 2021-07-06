@@ -1,12 +1,15 @@
 .labels {
-   color: teal !important;
-}
-
-.background {
-   background-image: url(../../assets/undraw_quiz_nlyh.svg);
+  color: teal !important;
 }
 
 * {
-   margin: 0;
-   padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
+/* div {
+  background-color: #315cfd;
+  color: white;
+  min-height: 10vh;
+  bottom: 0;
+} */
