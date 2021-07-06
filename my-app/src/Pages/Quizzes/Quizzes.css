@@ -7,8 +7,9 @@
 
 .quizzes-title {
   text-align: center;
-  padding: 7rem;
+  padding: 4rem;
   color: white;
+  text-decoration: underline;
 }
 
 .card-div {

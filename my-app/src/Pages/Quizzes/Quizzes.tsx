@@ -29,6 +29,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    title: {
+      color: "white",
+      paddingTop: "2rem",
+      bottom: "0",
+    },
     root: {
       maxWidth: 345,
     },
@@ -65,7 +70,11 @@ export function Quizzes() {
       <div className="main-div">
         {/* <h1>Hello {user?.name}</h1> */}
 
-        <h1 className="quizzes-title"> Pick any quiz!</h1>
+        <Typography variant="h3" align="center" className={classes.title}>
+          stonkstrivia
+        </Typography>
+
+        <h1 className="quizzes-title"> Choose a Quiz!</h1>
 
         <div className="card-div">
           <Link className="main-link" to="/quiz/60daffed69aa9632d40371af">
@@ -86,7 +95,7 @@ export function Quizzes() {
               </CardContent>
             </Card>
 
-            <button className="link-button">Play this Quiz</button>
+            <button className="link-button">PLAY!</button>
           </Link>
 
           <Link className="main-link" to="/quiz/60db002a69aa9632d40371b0">
@@ -107,7 +116,7 @@ export function Quizzes() {
               </CardContent>
             </Card>
 
-            <button className="link-button">Play this Quiz</button>
+            <button className="link-button">PLAY!</button>
           </Link>
         </div>
       </div>

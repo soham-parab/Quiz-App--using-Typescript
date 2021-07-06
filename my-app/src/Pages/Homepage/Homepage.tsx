@@ -13,7 +13,6 @@ export function Homepage() {
       paddingTop: "7rem",
       paddingBottom: "3rem",
     },
-    // color:"white"
   }));
 
   const classes = useStyles();
@@ -24,8 +23,8 @@ export function Homepage() {
       </Typography>
 
       <Typography className={classes.text} variant="h4">
-        Here's a few fun Finance quizzes for you to test how good are you really
-        with Finance!{" "}
+        Here's a few fun Finance quizzes for you to test how good you really are
+        at Finance!{" "}
       </Typography>
 
       <Login />

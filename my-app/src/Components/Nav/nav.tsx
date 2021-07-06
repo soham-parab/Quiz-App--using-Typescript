@@ -48,7 +48,7 @@ export const Nav = () => {
           </Link>
 
           {/* <div className={classes.root}> */}
-          <Button onClick={() => logout()} variant="contained" color="white">
+          <Button onClick={() => logout()} variant="contained">
             Logout
           </Button>
           {/* </div> */}
