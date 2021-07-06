@@ -13,3 +13,9 @@
   min-height: 10vh;
   bottom: 0;
 } */
+
+.nav-div {
+  display: flex;
+
+  width: 100vw;
+}

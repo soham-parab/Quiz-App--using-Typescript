@@ -53,20 +53,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export function Quizzes() {
-  <Nav />;
   // const { user: any } = useAuth0;
   const classes = useStyles();
   const { id } = useParams();
   console.log(id);
-  const { logout, isAuthenticated } = useAuth0();
 
+  const { logout, isAuthenticated } = useAuth0();
   return (
     <>
-      <div className={classes.root}>
-        <Button onClick={() => logout()} variant="contained" color="primary">
-          Logout
-        </Button>
-      </div>
+      <Nav />
       <div className="main-div">
         {/* <h1>Hello {user?.name}</h1> */}
 

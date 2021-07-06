@@ -9,10 +9,14 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Link } from "react-router-dom";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import Button from "@material-ui/core/Button";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./nav.css";
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#F45D01",
+    backgroundColor: "#1200BC",
+    width: "100%",
+    justifyContent: "flex-end",
   },
 });
 const labelClass = makeStyles({
@@ -25,6 +29,7 @@ const labelClass = makeStyles({
 });
 
 export const Nav = () => {
+  const { logout, isAuthenticated } = useAuth0();
   const classes = useStyles();
 
   const label = labelClass();
@@ -32,15 +37,8 @@ export const Nav = () => {
 
   return (
     <>
-      <div>
-        <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          showLabels
-          className={classes.root}
-        >
+      <div className="nav-div">
+        <BottomNavigation value={value} className={classes.root}>
           <Link className="Home-Link" to="/">
             <BottomNavigationAction
               className={label.label}
@@ -48,6 +46,12 @@ export const Nav = () => {
               icon={<HomeRoundedIcon />}
             />
           </Link>
+
+          {/* <div className={classes.root}> */}
+          <Button onClick={() => logout()} variant="contained" color="white">
+            Logout
+          </Button>
+          {/* </div> */}
         </BottomNavigation>
       </div>
     </>

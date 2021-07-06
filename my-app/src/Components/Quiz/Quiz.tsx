@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Quiz = () => {
-  <Nav />;
   const { id } = useParams();
   console.log(id);
   console.log("lien 47");
@@ -75,77 +74,83 @@ export const Quiz = () => {
   }, []);
   console.log(state.data.questions);
   return (
-    <div className="quiz-body">
-      <h1 className="quiz-name">Fundamentals of Personal Finance.</h1>
-      <div className="quiz-parent">
-        <CircularProgress variant="determinate" value={(1 - time / 10) * 100} />
+    <>
+      <Nav />
+      <div className="quiz-body">
+        <h1 className="quiz-name">Fundamentals of Personal Finance.</h1>
+        <div className="quiz-parent">
+          <CircularProgress
+            variant="determinate"
+            value={(1 - time / 10) * 100}
+          />
 
-        <br />
-        <h1
-          className="question"
-          style={{ display: state.data.questions ? "" : "none" }}
-        >
-          {state.data.questions.length &&
-            state.data.questions[state.currentQuesNumber].question}{" "}
-        </h1>
-
-        <h2 className="score">Score: {state.score} </h2>
-        <div
-          className="options-div"
-          style={{ display: state.data.questions ? "" : "none" }}
-        >
-          {state.data.questions.length &&
-            state.data.questions[state.currentQuesNumber].options.map(
-              (item: any) => {
-                return (
-                  <div>
-                    <button
-                      className={`singleOption ${
-                        selected && checkHandler(item)
-                      }`}
-                      disabled={state.disabled}
-                      onClick={() => {
-                        setSelected(item);
-                        if (item.isRight) {
-                          dispatch({ type: "RIGHT_ANS" });
-                        } else {
-                          dispatch({ type: "WRONG_ANS" });
-                        }
-                      }}
-                    >
-                      {item.answer}
-                    </button>
-                  </div>
-                );
-              }
-            )}
-        </div>
-        <div className="material-buttons">
-          <Button
-            onClick={() => {
-              setSelected("");
-              dispatch({ type: "NEXT_QUES" });
-              setDisabled(false);
-            }}
-            variant="contained"
+          <br />
+          <h1
+            className="question"
+            style={{ display: state.data.questions ? "" : "none" }}
           >
-            {" "}
-            NEXT QUESTION
-          </Button>
+            {state.data.questions.length &&
+              state.data.questions[state.currentQuesNumber].question}{" "}
+          </h1>
 
-          <Button
-            onClick={() => {
-              setSelected("");
-              dispatch({ type: "RESET" });
-              setDisabled(false);
-            }}
-            variant="contained"
+          <h2 className="score">Score: {state.score} </h2>
+          <div
+            className="options-div"
+            style={{ display: state.data.questions ? "" : "none" }}
           >
-            {" "}
-            RESET QUIZ
-          </Button>
+            {state.data.questions.length &&
+              state.data.questions[state.currentQuesNumber].options.map(
+                (item: any) => {
+                  return (
+                    <div>
+                      <button
+                        className={`singleOption ${
+                          selected && checkHandler(item)
+                        }`}
+                        disabled={state.disabled}
+                        onClick={() => {
+                          setSelected(item);
+                          if (item.isRight) {
+                            dispatch({ type: "RIGHT_ANS" });
+                          } else {
+                            dispatch({ type: "WRONG_ANS" });
+                          }
+                        }}
+                      >
+                        {item.answer}
+                      </button>
+                    </div>
+                  );
+                }
+              )}
+          </div>
+          <div className="material-buttons">
+            <Button
+              onClick={() => {
+                setSelected("");
+                dispatch({ type: "NEXT_QUES" });
+                setDisabled(false);
+              }}
+              variant="contained"
+            >
+              {" "}
+              NEXT QUESTION
+            </Button>
+
+            <Button
+              onClick={() => {
+                setSelected("");
+                dispatch({ type: "RESET" });
+                setDisabled(false);
+              }}
+              variant="contained"
+            >
+              {" "}
+              RESET QUIZ
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
