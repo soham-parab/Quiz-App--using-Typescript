@@ -86,7 +86,7 @@ export const Quiz = () => {
           {state.data.questions.length &&
             state.data.questions[state.currentQuesNumber].question}{" "}
         </h1>
-        {console.log(state.data.questions[0].options)}
+
         <h2 className="score">Score: {state.score} </h2>
         <div
           className="options-div"
@@ -111,7 +111,7 @@ export const Quiz = () => {
                         }
                       }}
                     >
-                      {item.option}
+                      {item.answer}
                     </button>
                   </div>
                 );

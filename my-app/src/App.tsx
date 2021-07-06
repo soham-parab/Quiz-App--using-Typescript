@@ -15,8 +15,6 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <Login />
-      <Logout />
       <Routes>
         <Route path="/quizzes" element={<Quizzes />} />
         <Route path="/" element={<Homepage />} />
