@@ -1,8 +1,8 @@
 .quiz-parent {
   width: 70vw !important;
-  background-color: #66cccc !important;
+  background-color: #3514ec !important;
   height: 70vh !important;
-  color: black !important;
+  color: white !important;
   border-radius: 30px !important;
   display: flex !important;
   justify-content: center !important;
@@ -30,7 +30,7 @@
 }
 
 .select {
-  background-color: #065f46;
+  background-color: #3fa084;
   color: white;
   box-shadow: 0 0 1px black;
 }
@@ -47,7 +47,7 @@
 }
 
 .quiz-body {
-  background-color: #18181b;
+  background-color: #315cfd;
 }
 
 .options-div {
@@ -78,6 +78,6 @@
 }
 
 .question {
-  color: black;
+  color: white;
   text-align: center;
 }

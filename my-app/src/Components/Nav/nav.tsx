@@ -18,6 +18,10 @@ const useStyles = makeStyles({
     width: "100%",
     justifyContent: "flex-end",
   },
+  button: {
+    padding: "0.9rem",
+    margin: "1rem",
+  },
 });
 const labelClass = makeStyles({
   label: {
@@ -48,7 +52,11 @@ export const Nav = () => {
           </Link>
 
           {/* <div className={classes.root}> */}
-          <Button onClick={() => logout()} variant="contained">
+          <Button
+            className={classes.button}
+            onClick={() => logout()}
+            variant="contained"
+          >
             Logout
           </Button>
           {/* </div> */}
