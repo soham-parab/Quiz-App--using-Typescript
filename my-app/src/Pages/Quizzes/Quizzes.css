@@ -1,0 +1,45 @@
+.card-parent {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.quizzes-title {
+  text-align: center;
+  padding: 4rem;
+  color: white;
+  text-decoration: underline;
+}
+
+.card-div {
+  display: flex;
+  justify-content: space-around;
+
+  text-align: center;
+}
+
+.main-div {
+  background-color: #315cfd;
+  height: 94vh;
+}
+
+.main-link {
+  text-decoration: none;
+  color: black;
+}
+
+.link-button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  color: #002852;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  background-color: #db504a;
+  color: white;
+}
